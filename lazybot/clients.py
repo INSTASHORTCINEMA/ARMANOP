@@ -1,8 +1,11 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+    # Credit @LazyDeveloper.
+    # Please Don't remove credit.
+    # Born to make history @LazyDeveloper !
 
-#Thanks @Lazy helping this journey 
+    # Thank you LazyDeveloper for helping us in this Journey
+    # 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+
+    # for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
 import asyncio
 import logging
 from info import *

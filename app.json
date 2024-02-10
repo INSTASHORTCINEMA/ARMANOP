@@ -1,5 +1,5 @@
 {
-    "name": "ARMANOP",
+    "name": "armanoplatest",
     "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "stack": "container",
     "keywords": [
@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/INSTASHORTCINEMA/ARMANOP",
-    "repository": "https://github.com/INSTASHORTCINEMA/ARMANOP",
+    "website": "https://github.com/INSTASHORTCINEMA/armanoplatest",
+    "repository": "https://github.com/INSTASHORTCINEMA/armanoplatest",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
@@ -54,22 +54,53 @@
             "description": "ID of channel.Make sure bot is admin in this channel. Without subscribing this channel users cannot use bot.",
             "required": false
         },
-        "FDQN": {
-            "description": "FULLY QUALIFIED DOMAIN NAME",
-            "required": false
-        },
         "DATABASE_URI": {
-            "description": "mongoDB URI. Get this value from https://www.mongodb.com. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
+            "description": "mongoDB URI. Get this value from https://www.mongodb.com.",
             "required": true
         },
         "DATABASE_NAME": {
-            "description": "Name of the database in mongoDB. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
-            "value": "ARMAN",
-            "required": true
+            "description": "mongoDB Database name.",
+            "required": false
         },
         "COLLECTION_NAME": {
-            "description": "Name of the collections. Defaults to Telegram_files. If you are using the same database, then use different collection name for each bot",
+            "description": "Name of the collections. Defaults name is Telegram_files. If you are using the same database, then use different collection name for each bot",
             "value": "Telegram_files",
+            "required": false
+        },
+        "SLEEP_THRESHOLD": {
+            "description": "Floodwait Sleep timer. Read the readme for more info about this var",
+            "required": false
+        },
+        "WORKERS": {
+            "description": "Number of workers that is to be assigned. Read the readme for more info about this var",
+            "required": false
+        },
+        "PORT": {
+            "description": "Port that you want your webApp to be listened to. Read the readme for more info about this var",
+            "value": "8080",
+            "required": false
+        },
+        "NO_PORT": {
+            "description": "If you don't want your port to be displayed. Read the readme for more info about this var",
+            "value": "False",
+            "required": false
+        },
+        "HAS_SSL": {
+            "description": "Default value is True",
+            "value": "True",
+            "required": false
+        },
+        "BIND_ADRESS": {
+            "description": "Read the readme for more info about this var  Leave Empty  For heroku",
+            "required": false
+        },
+        "FQDN": {
+            "description": "Read the readme for more info about this var  **Leave Empty for heroku**",
+            "required": false
+        },
+        "name": {
+            "description": " Session Name ",
+            "value": "File-To-Link",
             "required": false
         }
     },
@@ -80,7 +111,7 @@
     "formation": {
         "worker": {
             "quantity": 1,
-            "size": "eco"
+            "size": "free"
         }
     }
 }

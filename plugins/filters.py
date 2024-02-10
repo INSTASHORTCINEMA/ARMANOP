@@ -1,6 +1,5 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+# with Love @LazyDeveloperr 💘
+# Subscribe YT @LazyDeveloperr - to learn more about this for free...
 
 import io
 from pyrogram import filters, Client, enums
@@ -128,7 +127,6 @@ async def get_all(client, message):
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     if chat_type == enums.ChatType.PRIVATE:
-        userid = message.from_user.id
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -192,7 +190,7 @@ async def deletefilter(client, message):
     chat_type = message.chat.type
 
     if chat_type == enums.ChatType.PRIVATE:
-        grpid  = await active_connection(str(userid))
+        grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
             try:
@@ -203,6 +201,7 @@ async def deletefilter(client, message):
                 return
         else:
             await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
 
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
@@ -243,7 +242,7 @@ async def delallconfirm(client, message):
     chat_type = message.chat.type
 
     if chat_type == enums.ChatType.PRIVATE:
-        grpid  = await active_connection(str(userid))
+        grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
             try:
@@ -262,6 +261,7 @@ async def delallconfirm(client, message):
 
     else:
         return
+
 
     st = await client.get_chat_member(grp_id, userid)
     if (st.status == enums.ChatMemberStatus.OWNER) or (str(userid) in ADMINS):

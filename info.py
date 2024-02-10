@@ -103,8 +103,8 @@ else:
     ON_HEROKU = False
 BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
 FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://armanoplatest-aeb23f9bf0f8.herokuapp.com/".format(FQDN) if ON_HEROKU or NO_PORT else \
-    "https://armanoplatest-aeb23f9bf0f8.herokuapp.com/".format(FQDN, PORT)
+URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
+    "https://{}/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
 WORKERS = int(environ.get('WORKERS', '4'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'armanoplatest'))
@@ -119,9 +119,9 @@ else:
     ON_HEROKU = False
 HAS_SSL=bool(getenv('HAS_SSL',False))
 if HAS_SSL:
-    URL = "https://armanoplatest-aeb23f9bf0f8.herokuapp.com/".format(FQDN)
+    URL = "https://{}/".format(FQDN)
 else:
-    URL = "https://armanoplatest-aeb23f9bf0f8.herokuapp.com//".format(FQDN)
+    URL = "https://{}/".format(FQDN)
 BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001987654567")).split())) 
 OWNER_USERNAME = "ARMAN_PRO_BOY"
 
@@ -145,8 +145,8 @@ PRIME_DOWNLOADERS = (lazydownloaders) if lazydownloaders else []
 
 # Adding Language Feature : 
 LANGUAGES = ["hindi", "hin", "english", "eng", "korean", "kor", "urdu", "urd","chinese","chin","tamil", "tam", "malayalam", "mal",  "telugu", "tel", "kannada", "kan"]
-MAX_B_TN = environ.get("MAX_B_TN", "10")
-MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), True)
+MAX_B_TN = environ.get("MAX_B_TN", "5")
+MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), False)
 
 # Auto Delete For Group Message (Self Delete) #
 SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 300))

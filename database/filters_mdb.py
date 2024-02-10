@@ -1,10 +1,6 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import pymongo
-from info import DATABASE_URI, DATABASE_NAME
 from pyrogram import enums
+from info import DATABASE_URI, DATABASE_NAME
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)

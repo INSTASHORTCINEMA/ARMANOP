@@ -1,7 +1,3 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import logging
 from struct import pack
 import re
@@ -11,7 +7,7 @@ from pymongo.errors import DuplicateKeyError
 from umongo import Instance, Document, fields
 from motor.motor_asyncio import AsyncIOMotorClient
 from marshmallow.exceptions import ValidationError
-from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, MAX_B_TN
+from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER,MAX_B_TN
 from utils import get_settings, save_group_settings
 
 logger = logging.getLogger(__name__)
@@ -71,22 +67,9 @@ async def save_file(media):
 
 
 
-async def get_search_results(chat_id, query, file_type=None, max_results=10, offset=0, filter=False):
+async def get_search_results(query, file_type=None, max_results=10, offset=0, filter=False):
     """For given query return (results, next_offset)"""
-    if chat_id is not None:
-        settings = await get_settings(int(chat_id))
-        try:
-            if settings['max_btn']:
-                max_results = 10
-            else:
-                max_results = int(MAX_B_TN)
-        except KeyError:
-            await save_group_settings(int(chat_id), 'max_btn', False)
-            settings = await get_settings(int(chat_id))
-            if settings['max_btn']:
-                max_results = 10
-            else:
-                max_results = int(MAX_B_TN)
+
     query = query.strip()
     #if filter:
         #better ?
@@ -128,8 +111,23 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
 
     return files, next_offset, total_results
 
-async def get_bad_files(query, file_type=None, filter=False):
+async def get_search_results_badAss_LazyDeveloperr(chat_id, query, file_type=None, max_results=10, offset=0, filter=False):
     """For given query return (results, next_offset)"""
+    if chat_id is not None:
+        settings = await get_settings(int(chat_id))
+        try:
+            if settings['max_btn']:
+                max_results = 10
+            else:
+                max_results = int(MAX_B_TN)
+        except KeyError:
+            await save_group_settings(int(chat_id), 'max_btn', False)
+            settings = await get_settings(int(chat_id))
+            if settings['max_btn']:
+                max_results = 10
+            else:
+                max_results = int(MAX_B_TN)
+    print(query)
     query = query.strip()
     #if filter:
         #better ?
@@ -156,14 +154,21 @@ async def get_bad_files(query, file_type=None, filter=False):
         filter['file_type'] = file_type
 
     total_results = await Media.count_documents(filter)
+    next_offset = offset + max_results
+
+    if next_offset > total_results:
+        next_offset = ''
 
     cursor = Media.find(filter)
     # Sort by recent
     cursor.sort('$natural', -1)
+    # Slice files according to offset and max results
+    cursor.skip(offset).limit(max_results)
     # Get list of files
-    files = await cursor.to_list(length=total_results)
+    files = await cursor.to_list(length=max_results)
 
-    return files, total_results
+    return files, next_offset, total_results
+
 
 async def get_file_details(query):
     filter = {'file_id': query}
